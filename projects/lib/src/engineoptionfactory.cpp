@@ -47,6 +47,7 @@ EngineOption* EngineOptionFactory::create(const QVariantMap& map)
 
 	if (value.type() != QVariant::Bool &&
 		value.type() != QVariant::String &&
+		value.type() != QVariant::LongLong &&
 		value.type() != QVariant::Int)
 	{
 		qWarning("Invalid value type for option: %s",
@@ -58,6 +59,7 @@ EngineOption* EngineOptionFactory::create(const QVariantMap& map)
 		defaultValue = value;
 	else if (defaultValue.type() != QVariant::Bool &&
 		defaultValue.type() != QVariant::String &&
+		defaultValue.type() != QVariant::LongLong &&
 		defaultValue.type() != QVariant::Int)
 	{
 		qWarning("Invalid default value type for option: %s",

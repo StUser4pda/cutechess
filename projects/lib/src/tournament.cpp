@@ -1343,6 +1343,9 @@ std::mutex save_mutex;
 
 void Tournament::saveTournament()
 {
+    if (m_savePath.trimmed().size() == 0)
+        return;
+
 	const std::lock_guard<std::mutex> lock(save_mutex);
 
     QFile file(m_savePath);
@@ -1513,6 +1516,11 @@ bool Tournament::loadFromJson(const QJsonObject &json)
 				GameManager::Enqueue,
 				GameManager::ReusePlayers);
 	}
+
+    if (json["runningGames"].toArray().size() == 0) {
+        qWarning() << "No running games found in checkpoint!";
+        startNextGame();
+    }
 
 	connect(m_gameManager, SIGNAL(ready()),
 		this, SLOT(startNextGame()));

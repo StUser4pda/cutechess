@@ -47,6 +47,10 @@ NewTournamentDialog::NewTournamentDialog(EngineManager* engineManager,
 	  m_srcEngineManager(engineManager),
 	  ui(new Ui::NewTournamentDialog)
 {
+	QFont f = font();
+	f.setPointSize(12);
+	setFont(f);
+
 	Q_ASSERT(engineManager != nullptr);
 	ui->setupUi(this);
 

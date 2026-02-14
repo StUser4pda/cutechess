@@ -30,6 +30,10 @@ SettingsDialog::SettingsDialog(QWidget* parent)
 	: QDialog(parent),
 	  ui(new Ui::SettingsDialog)
 {
+	QFont f = font();
+	f.setPointSize(12);
+	setFont(f);
+
 	ui->setupUi(this);
 	ui->m_gameSettings->enableSplitTimeControls(true);
 

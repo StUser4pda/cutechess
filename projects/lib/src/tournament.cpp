@@ -22,6 +22,7 @@
 #include <QJsonDocument>
 #include <QMultiMap>
 #include <QSet>
+#include <QSettings>
 #include "gamemanager.h"
 #include "playerbuilder.h"
 #include "board/boardfactory.h"
@@ -32,7 +33,7 @@
 #include "openingbook.h"
 #include "sprt.h"
 #include "elo.h"
-
+#include <board/syzygytablebase.h>
 
 Tournament::Tournament(GameManager* gameManager, QObject *parent)
 	: QObject(parent),
@@ -1366,6 +1367,13 @@ void Tournament::saveTournament()
 
 bool Tournament::loadFromJson(const QJsonObject &json)
 {
+	QSettings s;
+	QString tbPath = s.value("ui/tb_path").toString();
+	if (!tbPath.isEmpty())
+	{
+		SyzygyTablebase::initialize({ tbPath });
+	}
+
     m_error = json["error"].toString();
     m_name = json["name"].toString();
     m_site = json["site"].toString();

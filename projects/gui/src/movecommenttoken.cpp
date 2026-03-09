@@ -35,7 +35,7 @@ void MoveCommentToken::vInsert(QTextCursor& cursor)
 	QString html = QString("<a class=\"comment\" href=\"comment://%1@\">%2</a> ")
 		       .arg(m_ply).arg(m_text);
 
-	if (m_text.length() > 18)
+	if (m_text.length() > 21)
 	{
 		QTextBlockFormat format(cursor.blockFormat());
 		format.setIndent(1);

@@ -268,6 +268,13 @@ void MainWindow::createActions()
 		if (defaultPath.isEmpty()) defaultPath = QCoreApplication::applicationDirPath();
 		QString fileName = QFileDialog::getOpenFileName(this, "Load tournament from file", defaultPath, "Tournament files (*.trnmt)");
 		if (!fileName.isEmpty()) {
+			QSettings s;
+			QString tbPath = s.value("ui/tb_path").toString();
+			if (!tbPath.isEmpty())
+			{
+				SyzygyTablebase::initialize({ tbPath });
+			}
+
 			m_stopTournamentAct->disconnect();
 			m_pauseTournamentAct->disconnect();
 			m_continueTournamentAc->disconnect();

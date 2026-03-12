@@ -1367,13 +1367,6 @@ void Tournament::saveTournament()
 
 bool Tournament::loadFromJson(const QJsonObject &json)
 {
-	QSettings s;
-	QString tbPath = s.value("ui/tb_path").toString();
-	if (!tbPath.isEmpty())
-	{
-		SyzygyTablebase::initialize({ tbPath });
-	}
-
     m_error = json["error"].toString();
     m_name = json["name"].toString();
     m_site = json["site"].toString();
